@@ -1,0 +1,171 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@drawable/gradient"
+    tools:context=".MovieDetails">
+
+        <ImageView
+            android:id="@+id/imageV1"
+            android:layout_width="408dp"
+            android:layout_height="221dp"
+            android:layout_marginTop="16dp"
+            android:layout_marginBottom="12dp"
+            app:layout_constraintBottom_toTopOf="@+id/textV1"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.333"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@mipmap/ic_launcher" />
+
+        <TextView
+            android:id="@+id/textV1"
+            android:layout_width="0dp"
+            android:layout_height="0dp"
+            android:layout_marginStart="23dp"
+            android:layout_marginLeft="23dp"
+            android:layout_marginEnd="23dp"
+            android:layout_marginRight="23dp"
+            android:layout_marginBottom="305dp"
+            android:fontFamily="sans-serif-black"
+            android:text="TextView"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            android:textStyle="bold"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/imageV1" />
+
+        <Button
+            android:id="@+id/btndate"
+            android:layout_width="112dp"
+            android:layout_height="50dp"
+            android:layout_marginBottom="228dp"
+            android:ems="10"
+            android:text="Pick A Date"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.076"
+            app:layout_constraintStart_toStartOf="parent" />
+
+        <TextView
+            android:id="@+id/dateview"
+            android:layout_width="238dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="11dp"
+            android:layout_marginLeft="11dp"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:gravity="center"
+            android:text="mm/dd/yy"
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toEndOf="@+id/btndate"
+            app:layout_constraintTop_toBottomOf="@+id/textV1"
+            app:layout_constraintVertical_bias="0.105" />
+
+        <TextView
+            android:id="@+id/textView6"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="12dp"
+            android:text="Available in:"
+            android:textColor="#FFF"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/btndate"
+            app:layout_constraintVertical_bias="0.022" />
+
+        <TextView
+            android:id="@+id/oneU"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="140dp"
+            android:text="1 Utama"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.068"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.875" />
+
+        <Button
+            android:id="@+id/oneU12"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:text="12PM"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.112"
+            app:layout_constraintStart_toEndOf="@+id/oneU"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.083" />
+
+        <Button
+            android:id="@+id/oneU4"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="15dp"
+            android:layout_marginLeft="15dp"
+            android:text="4PM"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.1"
+            app:layout_constraintStart_toEndOf="@+id/oneU12"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.083" />
+
+        <Button
+            android:id="@+id/oneU9"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginStart="28dp"
+            android:layout_marginLeft="28dp"
+            android:layout_marginTop="2dp"
+            android:text="9PM"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.06"
+            app:layout_constraintStart_toEndOf="@+id/oneU4"
+            app:layout_constraintTop_toBottomOf="@+id/textView6"
+            app:layout_constraintVertical_bias="0.07" />
+
+        <Button
+            android:id="@+id/sv4"
+            android:layout_width="65dp"
+            android:layout_height="50dp"
+            android:layout_marginTop="28dp"
+            android:text="4PM"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.102"
+            app:layout_constraintStart_toEndOf="@+id/textView8"
+            app:layout_constraintTop_toBottomOf="@+id/oneU9"
+            app:layout_constraintVertical_bias="0.269" />
+
+        <TextView
+            android:id="@+id/textView8"
+            android:layout_width="78dp"
+            android:layout_height="57dp"
+            android:text="Sunway Velocity"
+            android:textColor="#FFF"
+            android:textSize="20sp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.069"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/oneU9"
+            app:layout_constraintVertical_bias="0.459" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
