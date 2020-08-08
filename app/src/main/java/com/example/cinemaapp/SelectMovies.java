@@ -3,6 +3,9 @@ package com.example.cinemaapp;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.DefaultItemAnimator;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.Intent;
@@ -16,66 +19,54 @@ import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-public class SelectMovies extends AppCompatActivity {
-    ListView lv;
+import java.util.ArrayList;
+import java.util.List;
 
-    String mMovies[] = {"Avenger: Endgame", "Crawl", "Frozen 2", "Spiderman: Far From Home", "Train to Busan : Peninsula", "Trolls World Tour"};
-    String mDescription[] = {"Action, Adventure, Superhero", "Horror, Disaster, Action", "Musical, Fantasy, Comedy", "Action, Fantasy, Superhero", "Thriller, Action, Horror", "Children's Film, Comedy, Animation"};
-    int mImages[] = {R.drawable.avenger, R.drawable.crawl, R.drawable.frozen2, R.drawable.spidermanfarfromhome, R.drawable.traintobusan, R.drawable.trollworldtour};
+public class SelectMovies extends AppCompatActivity {
+    private RecyclerView lv;
+    private List<Movie> movieList=new ArrayList<>();
+    private AdapterCinema adapterCinema;
+    private Movie movie;
+
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_select_movies);
 
-        lv = (ListView) findViewById(R.id.lv);
+        lv = findViewById(R.id.lv);
+        adapterCinema=new AdapterCinema(movieList,this);
 
-        MyAdapter adapter = new MyAdapter(SelectMovies.this, mMovies, mDescription, mImages);
+        RecyclerView.LayoutManager mLayoutManager = new LinearLayoutManager(getApplicationContext());
+        lv.setLayoutManager(mLayoutManager);
+        lv.setItemAnimator(new DefaultItemAnimator());
+        lv.setAdapter(adapterCinema);
 
-        lv.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> adapterView, View view, int position, long id) {
-                if (position == 0 ) {
-                    Intent intent = new Intent(SelectMovies.this, MovieDetails.class);
-                    intent.putExtra("MovieName", lv.getItemAtPosition(position).toString());
-                    intent.putExtra("MovieDescription",lv.getItemAtPosition(position).toString());
-                    intent.putExtra("Images",lv.getItemAtPosition(position).toString());
-                    startActivity(intent);
-                }
-            }
-        });
+        prepareMovieData();
+
+
     }
 
-    class MyAdapter extends ArrayAdapter<String>{
+    private void prepareMovieData() {
+        movie=new Movie("Avenger: Endgame","Action, Adventure, Superhero",R.drawable.avenger);
+        movieList.add(movie);
 
-        Context context;
-        String rMovies[];
-        String rDes[];
-        int rImages[];
+        movie=new Movie("Crawl","Horror, Disaster, Action",R.drawable.crawl);
+        movieList.add(movie);
 
-        MyAdapter(Context c, String movies[], String description[], int imgs[]) {
-            super(c, R.layout.row, R.id.text1, movies);
-            this.context = c;
-            this.rMovies = movies;
-            this.rDes = description;
-            this.rImages = imgs;
-        }
+        movie=new Movie("Frozen 2","Musical, Fantasy, Comedy", R.drawable.frozen2);
+        movieList.add(movie);
 
-        @NonNull
-        @Override
-        public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-            LayoutInflater layoutInflater = (LayoutInflater)getApplicationContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            View row = layoutInflater.inflate(R.layout.row, parent, false);
-            ImageView images = row.findViewById(R.id.image);
-            TextView myMovies = row.findViewById(R.id.text1);
-            TextView myDescription = row.findViewById(R.id.text2);
+        movie=new Movie("Spiderman: Far From Home","Action, Fantasy, Superhero",R.drawable.spidermanfarfromhome);
+        movieList.add(movie);
 
+        movie=new Movie("Train to Busan : Peninsula","Thriller, Action, Horror",R.drawable.traintobusan);
+        movieList.add(movie);
 
-            images.setImageResource(rImages[position]);
-            myMovies.setText(rMovies[position]);
-            myDescription.setText(rDes[position]);
-
-            return row;
-        }
+        movie=new Movie("Trolls World Tour","Children's Film, Comedy, Animation",R.drawable.trollworldtour);
+        movieList.add(movie);
     }
+
+
 }
