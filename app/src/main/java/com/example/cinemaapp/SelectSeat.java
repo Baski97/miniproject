@@ -56,7 +56,7 @@ public class SelectSeat extends AppCompatActivity {
                 String totalPriceI=totalPrice.getText().toString().trim();
                 String totalBookedSeatsI=totalBookedSeat.getText().toString().trim();
 
-                PaymentDetail paymentDetail=new PaymentDetail(totalPriceI,totalBookedSeatsI);
+         /*     PaymentDetail paymentDetail=new PaymentDetail(totalPriceI,totalBookedSeatsI);
 
                 FirebaseUser user=firebaseAuth.getCurrentUser();
                 //databaseReference.child(user.getUid()).child("SeatDetails").setValue(paymentDetail);
@@ -64,7 +64,7 @@ public class SelectSeat extends AppCompatActivity {
                 Intent intent=new Intent(SelectSeat.this,MakePayment.class);
                 intent.putExtra("TOTALCOST",totalPriceI);
                 intent.putExtra("TOTALSEAT",totalBookedSeatsI);
-                startActivity(intent);
+                startActivity(intent);*/
 
             }
         });
