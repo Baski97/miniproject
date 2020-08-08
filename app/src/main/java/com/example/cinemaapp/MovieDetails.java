@@ -5,40 +5,130 @@ import androidx.fragment.app.DialogFragment;
 
 import android.app.DatePickerDialog;
 import android.content.Intent;
-import android.net.Uri;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.DatePicker;
 import android.widget.ImageView;
+import android.widget.RadioButton;
+import android.widget.RadioGroup;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import java.text.DateFormat;
 import java.util.Calendar;
 
-
 public class MovieDetails extends AppCompatActivity implements DatePickerDialog.OnDateSetListener {
+    ImageView imageV1;
+    Button oneU12, oneU4, oneU9, sv4;
+    Button btndate;
+    TextView textV1,date;
+    DialogFragment datePicker;
+    RadioButton utama,sunway,time1,time2,time3,stime1;
+    RadioGroup rd,utamatime,sunwaytime;
+    Button procced;
+    private Button bt;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
-        ImageView imageV1;
-        Button oneU12, oneU4, oneU9, sv4;
-        Button btndate;
-        TextView textV1;
-
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_movie_details);
 
-        getSupportActionBar().setTitle("Movie Details");
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
+        bt=findViewById(R.id.booking);
+
+
 
         imageV1 = (ImageView) findViewById(R.id.imageV1);
-        oneU12 = (Button) findViewById(R.id.oneU12);
-        oneU4 = (Button) findViewById(R.id.oneU4);
-        oneU9 = (Button) findViewById(R.id.oneU9);
-        sv4 = (Button) findViewById(R.id.sv4);
         textV1 = (TextView) findViewById(R.id.textV1);
         btndate = (Button)findViewById(R.id.btndate);
+        procced=findViewById(R.id.procced);
+        date=findViewById(R.id.dateview);
+        utama=findViewById(R.id.utama);
+        sunway=findViewById(R.id.sunway);
+        rd=findViewById(R.id.cinemahall);
+
+        time1=findViewById(R.id.time1);
+        time2=findViewById(R.id.time2);
+        time3=findViewById(R.id.time3);
+        utamatime=findViewById(R.id.utamatime);
+
+
+        stime1=findViewById(R.id.stime1);
+        sunwaytime=findViewById(R.id.sunwaytime);
+
+
+
+        if(getIntent().hasExtra("mName") && getIntent().hasExtra("mDes")){
+            String name=getIntent().getStringExtra("mName");
+            String des=getIntent().getStringExtra("mDes");
+            int image=getIntent().getIntExtra("mPoster",0);
+
+
+            imageV1.setImageResource(image);
+            textV1.setText(name+"\n"+des);
+
+
+
+        }else {
+            Toast.makeText(MovieDetails.this, "Empty", Toast.LENGTH_LONG).show();
+        }
+
+        procced.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if(utama.isChecked()){
+                    Toast.makeText(MovieDetails.this, "Utama", Toast.LENGTH_LONG).show();
+                    rd.setVisibility(View.GONE);
+                    utamatime.setVisibility(View.VISIBLE);
+                    if(time1.isChecked()){
+                        Toast.makeText(MovieDetails.this, "You have choose: Utama,Time: 12PM", Toast.LENGTH_LONG).show();
+                        procced.setVisibility(View.GONE);
+                        bt.setVisibility(View.VISIBLE);
+
+
+                    }else if(time2.isChecked()){
+                        Toast.makeText(MovieDetails.this, "You have choose: Utama,Time: 4PM", Toast.LENGTH_LONG).show();
+                        procced.setVisibility(View.GONE);
+                        bt.setVisibility(View.VISIBLE);
+
+
+                    }else if(time3.isChecked()){
+                        Toast.makeText(MovieDetails.this, "You have choose: Utama,Time: 9PM", Toast.LENGTH_LONG).show();
+                        procced.setVisibility(View.GONE);
+                        bt.setVisibility(View.VISIBLE);
+
+
+                    }
+
+
+                }else {
+                    Toast.makeText(MovieDetails.this, "Sunway", Toast.LENGTH_LONG).show();
+                    rd.setVisibility(View.GONE);
+                    sunwaytime.setVisibility(View.VISIBLE);
+                    if (stime1.isChecked()){
+                        Toast.makeText(MovieDetails.this, "You have choose: Sunway,Time: 4PM", Toast.LENGTH_LONG).show();
+                        procced.setVisibility(View.GONE);
+                        bt.setVisibility(View.VISIBLE);
+
+
+
+
+                    }
+
+                }
+
+            }
+        });
+
+
+        bt.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                startActivity(new Intent(MovieDetails.this,SelectSeat.class));
+            }
+        });
+
 
         btndate.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -48,86 +138,19 @@ public class MovieDetails extends AppCompatActivity implements DatePickerDialog.
             }
         });
 
-        Intent in = getIntent();
-        Bundle b = in.getExtras();
 
-        String img=getIntent().getStringExtra("Images");
-        imageV1.setImageURI(Uri.parse(img));
 
-        String textname = getIntent().getStringExtra("MovieName");
-        textV1.setText(textname);
-
-        oneU12.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MovieDetails.this, SelectSeat.class);
-                intent.putExtra("oneU12cinema", "ONE UTAMA");
-                intent.putExtra("oneU12","12PM");
-                startActivity(intent);
-
-                Intent intent1 = new Intent(MovieDetails.this, MakePayment.class);
-                intent1.putExtra("oneU12cinema", "ONE UTAMA");
-                intent1.putExtra("oneU12","12PM");
-                startActivity(intent1);
-            }
-        });
-
-        oneU4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MovieDetails.this, SelectSeat.class);
-                intent.putExtra("oneU4cinema", "ONE UTAMA");
-                intent.putExtra("oneU4","4PM");
-                startActivity(intent);
-
-                Intent intent1 = new Intent(MovieDetails.this, MakePayment.class);
-                intent1.putExtra("oneU4cinema", "ONE UTAMA");
-                intent1.putExtra("oneU4","4PM");
-                startActivity(intent1);
-            }
-        });
-
-        oneU9.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MovieDetails.this, SelectSeat.class);
-                intent.putExtra("oneU9cinema", "ONE UTAMA");
-                intent.putExtra("oneU9","9PM");
-                startActivity(intent);
-
-                Intent intent1 = new Intent(MovieDetails.this, SelectSeat.class);
-                intent1.putExtra("oneU9cinema", "ONE UTAMA");
-                intent1.putExtra("oneU9","9PM");
-                startActivity(intent1);
-            }
-        });
-
-        sv4.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = new Intent(MovieDetails.this, SelectSeat.class);
-                intent.putExtra("sv4cinema", "SUNWAY VELOCITY");
-                intent.putExtra("sv4","4PM");
-                startActivity(intent);
-
-                Intent intent1 = new Intent(MovieDetails.this, SelectSeat.class);
-                intent1.putExtra("sv4cinema", "SUNWAY VELOCITY");
-                intent1.putExtra("sv4","4PM");
-                startActivity(intent1);
-            }
-        });
-    }
+          }
 
     @Override
-    public void onDateSet(DatePicker datePicker, int year, int month, int day) {
+    public void onDateSet(DatePicker view, int year, int month, int dayOfMonth) {
         Calendar c = Calendar.getInstance();
-        c.set(Calendar.YEAR,year);
+        c.set(Calendar.YEAR, year);
         c.set(Calendar.MONTH, month);
-        c.set(Calendar.DAY_OF_MONTH, day);
+        c.set(Calendar.DAY_OF_MONTH, dayOfMonth);
+        String currentDateString = DateFormat.getDateInstance(DateFormat.FULL).format(c.getTime());
 
-        String currentDateString = DateFormat.getDateInstance(DateFormat.MEDIUM).format(c.getTime());
+        date.setText(currentDateString);
 
-        TextView dateview = (TextView)findViewById(R.id.dateview);
-        dateview.setText(currentDateString);
     }
 }
