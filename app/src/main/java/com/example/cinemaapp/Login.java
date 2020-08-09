@@ -17,6 +17,8 @@ import com.google.firebase.auth.AuthResult;
 import com.google.firebase.auth.FirebaseAuth;
 import com.google.firebase.auth.FirebaseUser;
 
+import javax.security.auth.callback.CallbackHandler;
+
 public class Login extends AppCompatActivity {
     EditText email,password;
     Button login;
@@ -42,7 +44,7 @@ public class Login extends AppCompatActivity {
                 FirebaseUser mFirebaseUser = fb.getCurrentUser();
                 if(mFirebaseUser!=null){
                     Toast.makeText(Login.this, "You are logged in",Toast.LENGTH_SHORT).show();
-                    Intent intentsignin=new Intent(Login.this,Home.class);
+                    Intent intentsignin=new Intent(Login.this, CheckMovies.class);
                     startActivity(intentsignin);
                 }
                 else{
@@ -79,7 +81,7 @@ public class Login extends AppCompatActivity {
                                 Toast.makeText(Login.this, "Unable to SignIn",Toast.LENGTH_SHORT).show();
                             }
                             else{
-                                Intent intenthome= new Intent(Login.this,Home.class);
+                                Intent intenthome= new Intent(Login.this,CheckMovies.class);
                                 startActivity(intenthome);
                             }
                         }
