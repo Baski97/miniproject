@@ -12,12 +12,6 @@ import android.widget.GridLayout;
 import android.widget.TextView;
 import android.widget.Toast;
 
-import com.google.firebase.auth.FirebaseAuth;
-import com.google.firebase.auth.FirebaseUser;
-import com.google.firebase.database.DatabaseReference;
-import com.google.firebase.database.FirebaseDatabase;
-
-
 public class SelectSeat extends AppCompatActivity {
 
     GridLayout mainGrid;
@@ -29,8 +23,6 @@ public class SelectSeat extends AppCompatActivity {
 
     private Button btnProceed, btnCancel;
 
-    private FirebaseAuth firebaseAuth;
-    DatabaseReference databaseReference;
 
 
     @Override
@@ -46,7 +38,6 @@ public class SelectSeat extends AppCompatActivity {
         totalPrice = (TextView) findViewById(R.id.total_cost);
         btnProceed = (Button) findViewById(R.id.btnProceed);
         btnCancel = (Button) findViewById(R.id.btnCancel);
-        databaseReference = FirebaseDatabase.getInstance().getReference();
 
         setToggleEvent(mainGrid);
 
@@ -56,15 +47,11 @@ public class SelectSeat extends AppCompatActivity {
                 String totalPriceI=totalPrice.getText().toString().trim();
                 String totalBookedSeatsI=totalBookedSeat.getText().toString().trim();
 
-         /*     PaymentDetail paymentDetail=new PaymentDetail(totalPriceI,totalBookedSeatsI);
-
-                FirebaseUser user=firebaseAuth.getCurrentUser();
-                //databaseReference.child(user.getUid()).child("SeatDetails").setValue(paymentDetail);
-
+                PaymentDetail paymentDetail=new PaymentDetail(totalPriceI,totalBookedSeatsI);
                 Intent intent=new Intent(SelectSeat.this,MakePayment.class);
                 intent.putExtra("TOTALCOST",totalPriceI);
                 intent.putExtra("TOTALSEAT",totalBookedSeatsI);
-                startActivity(intent);*/
+                startActivity(intent);
 
             }
         });
