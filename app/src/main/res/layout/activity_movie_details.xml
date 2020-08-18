@@ -116,13 +116,13 @@
         android:layout_height="wrap_content"
         android:layout_gravity="center_horizontal">
 
+
         <RadioButton
             android:id="@+id/utama"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:text="1 Utama"
-            android:textColor="#FFF"/>
-
+            android:textColor="#FFF" />
 
         <RadioButton
             android:id="@+id/sunway"
@@ -191,5 +191,17 @@
         android:text="Book Seat"
         android:layout_gravity="center_horizontal"
         android:visibility="gone"/>
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/place"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+
+    <TextView
+        android:visibility="gone"
+        android:id="@+id/time"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
 
 </LinearLayout>

@@ -14,6 +14,7 @@ import android.widget.Toast;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.Task;
 import com.google.firebase.auth.FirebaseAuth;
+import com.google.firebase.auth.FirebaseUser;
 
 public class MainActivity extends AppCompatActivity {
     EditText email,password;
@@ -76,12 +77,29 @@ public class MainActivity extends AppCompatActivity {
         signin.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Intent intentsignin=new Intent(MainActivity.this,Login.class);
-                startActivity(intentsignin);
+                Intent intenthome= new Intent(MainActivity.this,CheckMovies.class);
+                startActivity(intenthome);
             }
         });
     }
 
 
 
+
+    @Override
+    protected void onStart() {
+        super.onStart();
+        FirebaseUser current= fb.getCurrentUser();
+        if(current!=null){
+            //user logged in
+            Intent intenthome= new Intent(MainActivity.this,Home.class);
+            startActivity(intenthome);
+        }
+        else {
+            Intent intentsignin=new Intent(MainActivity.this,Login.class);
+            startActivity(intentsignin);
+            finish();
+
+        }
+    }
 }

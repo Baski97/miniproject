@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     package="com.example.cinemaapp">
 
+    <uses-permission android:name="android.permission.INTERNET" />
+    <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
+
     <application
         android:allowBackup="true"
         android:icon="@mipmap/film"
@@ -9,6 +12,10 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
+        <activity android:name=".Location"></activity>
+        <activity android:name=".Payment" />
+        <activity android:name=".MovieDetails" />
+        <activity android:name=".SelectSeat" />
         <activity android:name=".SelectMovies" />
         <activity android:name=".CheckMovies" />
         <activity android:name=".Login" />
